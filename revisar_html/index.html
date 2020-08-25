@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercícios HTML</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            #conteudo {
+                padding: 30px 30px;
+            }
+
+            footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 40px;
+                background-color: rgb(20, 20, 20);
+            }
+
+            footer > p{  
+                color: whitesmoke;
+                text-align: center;
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            <h1>Exercícios HTML</h1>
+        </header>
+
+        <nav>
+            <a href="exercicios/teste.html">00 - Teste</a> |
+            <a href="exercicios/texto1.html">01 - Texto 1</a>|
+            <a href="exercicios/texto2.html">02 - Texto 2</a>|
+            <a href="exercicios/listas.html">03 - Listas</a>|
+            <a href="exercicios/listaAninhada.html">04 - Lista Aninhada</a>|
+            <a href="exercicios/links.html">05 - Links</a>|
+            <a href="exercicios/tabela.html">06 - Tabela</a>|
+            <a href="exercicios/form/form.html">07 - Formulário</a>|
+            <a href="exercicios/imagens.html">08 - Imagens</a>|
+            <a href="exercicios/video.html">09 - Video</a>|
+            <a href="exercicios/tagsNãoVisuais.html">10 - Video</a>|
+
+
+        </nav>
+
+
+        <section id="conteudo"></section>
+
+
+        <footer>
+            <p>Curso Web Moderno</p>
+        </footer>
+
+
+        <script>
+
+            document.querySelectorAll('a').forEach(link => {
+
+                link.onclick = e => {
+                    e.preventDefault()
+
+                    const conteudo = document.getElementById('conteudo')
+
+                    fetch(link.href)
+                        .then(resp => resp.text())
+                        .then(cont => {
+
+                            conteudo.innerHTML = cont
+                        })
+                }
+            })
+        </script>
+    </body>
+</html>

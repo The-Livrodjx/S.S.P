@@ -1,0 +1,207 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+            alt="Muro da cidade"
+            width="513" height="342"
+            title="Muro da Cidade por Tarso Bessa">
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" 
+            alt="Intro Cod3r" height="342">
+    </p>
+    
+    
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Rio de Janeiro" height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar" height="50" align="left">
+    
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+        Texto kjgfjfjfjfjfj jfjj jfj fjjf jfj j fjjfjf jfj fj fjfj jfjf jfjf jfj fjjf jfjf jfj jfj jfjf
+    </p>
+    
+    <p class="cidade">
+    
+    </p>
+    
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" 
+            media="(min-width: 600px)">
+    
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+        </picture>
+    </p>
+    
+</div>
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circular {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img{
+        margin-right: 15px;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback) {
+
+        const novoInicio = inicio - passo
+
+        if(novoInicio >= fim) {
+            elem.style.left = novoInicio + 'px'
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 7)
+        }
+        else {
+            callback()
+        }
+    }
+
+   
+    /*const p = document.querySelector('[wm-slider] > p')
+
+    p.style.display = 'block'
+
+    mover(p, 1500, -600, 5, () => {
+        alert('Terminou')
+    })*/
+
+    function slider() {
+        const elemento = document.querySelectorAll('[wm-slider] > p')
+        const slides = Array.from(elemento)
+        exibirSlide(slides, slides[0])
+    }
+
+    function exibirSlide(slides, slide) {
+        slide.style.display = 'block'
+
+        const inicio = innerWidth
+        const fim = -slide.clientWidth
+
+        slide.style.left = `${inicio}px`
+
+        mover(slide, inicio, fim, 5, () => {
+
+            exibirSlide(slides, getProximo(slides, slide))
+        })
+    }
+
+    function getProximo(lista, atual) {
+
+        const i = lista.indexOf(atual) + 1
+
+        return i < lista.length ? lista[i] : lista[0]
+    }
+
+    slider()
+</script>
+
+<!--
+     <style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+ 
+    a {
+        color: #19838d;
+    }
+ 
+    .container {
+        margin: 50px auto;
+        padding-bottom: 28%;
+        width: 60%;
+        overflow: hidden;
+        border: 15px solid #fff;
+        position: relative;
+        display: block;
+        margin: 40px auto 40px;
+        box-shadow: 0 10px 10px #777;
+    }
+ 
+    .alterarFoto {
+        position: absolute;
+        animation: round 16s infinite;
+        top: 0;
+        left: 0;
+        animation-direction: reverse;
+    }
+ 
+    @keyframes round {
+        100% {
+            opacity: 0; left: 2000px;
+        }
+    }
+ 
+    .alterarFoto:nth-child(1) {
+        animation-delay: 0s;
+    }
+ 
+    .alterarFoto:nth-child(2) {
+        animation-delay: 4s;
+    }
+ 
+    .alterarFoto:nth-child(3) {
+        animation-delay: 8s;
+    }
+ 
+    .alterarFoto:nth-child(4) {
+        animation-delay: 12s;
+    }
+ 
+    @media (max-width: 728px) {
+        .container {
+            width: 90%;
+            padding-bottom: 50%;
+        }
+    }
+</style>
+ 
+<div class="container">
+    <div class="alterarFoto">
+        <img class='foto' src="//c1.staticflickr.com/1/624/32968186751_a913f86f82_c.jpg" alt="" />
+    </div>
+    <div class="alterarFoto">
+        <img class='foto' src="//c1.staticflickr.com/3/2868/33027057984_13609393e8_c.jpg" alt="" />
+    </div>
+    <div class="alterarFoto">
+        <img class='foto' src="//c1.staticflickr.com/3/2913/33895858336_33c5124502_c.jpg" alt="" />
+    </div>
+    <div class="alterarFoto">
+        <img class='foto' src="//c1.staticflickr.com/3/2923/33100532164_31bac14009_c.jpg" alt="" />
+    </div>
+</div>
+-->
